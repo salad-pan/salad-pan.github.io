@@ -157,7 +157,7 @@ const experimentalTables = [
   {
     name: "GaoFen-2 (GF2)",
     caption:
-      "Table 8. Quantitative results on the GaoFen-2 (GF2) dataset. Best and second-best results are in bold and underlined.",
+      "Table 3. Quantitative results on the GaoFen-2 (GF2) dataset. Best and second-best results are in bold and underlined.",
     columnGroups: [
       { label: "Methods", colspan: 2 },
       { label: "Reduced Resolution (RR)", colspan: 4 },
@@ -309,7 +309,7 @@ const pad3 = (n: number) => String(n).padStart(3, "0")
 
 const visualizationDatasets: VisDataset[] = [
   {
-    name: "WorldView-3",
+    name: "WorldView-3 (WV3)",
     images: makeTripletSamples({
       count: VIS_COUNT_PER_DATASET,
       getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv3/${pad3(k)}_pan.png`,
@@ -318,7 +318,7 @@ const visualizationDatasets: VisDataset[] = [
     }),
   },
   {
-    name: "QuickBird",
+    name: "QuickBird (QB)",
     images: makeTripletSamples({
       count: VIS_COUNT_PER_DATASET,
       getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/qb/${pad3(k)}_pan.png`,
@@ -327,7 +327,7 @@ const visualizationDatasets: VisDataset[] = [
     }),
   },
   {
-    name: "GaoFen-2",
+    name: "GaoFen-2 (GF2)",
     images: makeTripletSamples({
       count: VIS_COUNT_PER_DATASET,
       getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/gf2/${pad3(k)}_pan.png`,
