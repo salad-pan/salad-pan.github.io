@@ -4,7 +4,7 @@ import { AbstractSection } from "@/components/sections/abstract-section"
 import { MarkdownSection } from "@/components/sections/markdown-section"
 // import { LatexSection } from "@/components/sections/latex-section"
 import { TableSection } from "@/components/sections/table-section"
-import { CollapseSection } from "@/components/sections/collapse-section"
+// import { CollapseSection } from "@/components/sections/collapse-section"
 // import { ChartSection } from "@/components/sections/chart-section"
 import { ImageSliderSection } from "@/components/sections/image-slider-section"
 import { BibTexSection } from "@/components/sections/bibtex-section"
@@ -21,17 +21,17 @@ const paperData = {
     { name: "Chunhua Shen", affiliation: 3, link: "https://scholar.google.com/citations?hl=en&user=Ljk2BvIAAAAJ" },
   ],
   affiliations: [
-    "School of Cyberspace Security, Northwestern Polytechnical University, Xi'an, Shanxi, China",
-    "School of Computer Science, Nanjing University of Information Science and Technology, Nanjing, Jiangsu, China",
+    "Northwestern Polytechnical University, Xi'an, Shanxi, China",
+    "Nanjing University of Information Science and Technology, Nanjing, Jiangsu, China",
     "Zhejiang University, Hangzhou, Zhejiang, China",
   ],
   venue: "",
   links: {
-    paper: "#",
-    arxiv: "https://arxiv.org",
-    code: "https://github.com/JJLibra",
-    data: "#",
-    video: "#",
+    paper: "https://arxiv.org/abs/2602.04473",
+    arxiv: "https://arxiv.org/abs/2602.04473",
+    code: "https://github.com/JJLibra/SALAD-Pan",
+    models: "https://huggingface.co/xxfer/SALAD-Pan",
+    data: "https://huggingface.co/xxfer/SALAD-Pan",
   },
 }
 
@@ -67,31 +67,180 @@ const formulas = [
 ]
 */
 
-const tableHeaders = [
-  "Method",
-  "Backbone",
-  { content: "PQ", isLatex: false },
-  { content: "SQ", isLatex: false },
-  { content: "RQ", isLatex: false },
-  { content: "PQ^{th}", isLatex: true },
-  { content: "PQ^{st}", isLatex: true },
-]
-const tableRows = [
-  ["Panoptic FPN", { content: "R_{50}", isLatex: true }, "39.0", "77.8", "48.1", "45.9", "28.7"],
-  ["DETR", { content: "R_{50}", isLatex: true }, "43.4", "79.3", "53.8", "48.2", "35.8"],
-  ["MaskFormer", { content: "R_{50}", isLatex: true }, "46.5", "80.4", "56.8", "51.0", "39.8"],
-  ["Mask2Former", { content: "R_{50}", isLatex: true }, "51.9", "81.8", "62.3", "57.7", "43.0"],
-  [
-    { content: "SALAD-Pan (Ours)", isBold: true },
-    { content: "R_{50}", isLatex: true },
-    { content: "\\mathbf{54.2}", isLatex: true, isBold: true },
-    { content: "\\mathbf{82.6}", isLatex: true, isBold: true },
-    { content: "\\mathbf{64.7}", isLatex: true, isBold: true },
-    { content: "\\mathbf{59.8}", isLatex: true, isBold: true },
-    { content: "\\mathbf{45.6}", isLatex: true, isBold: true },
-  ],
+const experimentalTables = [
+  {
+    name: "WorldView-3 (WV3)",
+    caption: "Table 1. Quantitative results on the WorldView-3 (WV3) dataset. Best and second-best results are in bold and underlined.",
+    columnGroups: [
+      { label: "Methods", colspan: 2 },
+      { label: "Reduced Resolution", colspan: 4 },
+      { label: "Full Resolution", colspan: 3 },
+    ],
+    headers: [
+      "Models",
+      "Pub/Year",
+      { content: "Q_8 \\uparrow", isLatex: true },
+      { content: "SAM \\downarrow", isLatex: true },
+      { content: "ERGAS \\downarrow", isLatex: true },
+      { content: "SCC \\uparrow", isLatex: true },
+      { content: "D_\\lambda \\downarrow", isLatex: true },
+      { content: "D_s \\downarrow", isLatex: true },
+      { content: "HQNR \\uparrow", isLatex: true },
+    ],
+    rows: [
+      ["PanNet", "ICCV'17", "0.891±0.045", "3.613±0.787", "2.664±0.347", "0.943±0.018", "0.017±0.008", "0.047±0.014", "0.937±0.015"],
+      ["FusionNet", "TGRS'20", "0.904±0.092", "3.324±0.411", "2.465±0.603", "0.958±0.023", "0.024±0.011", "0.036±0.016", "0.940±0.019"],
+      ["LAGConv", "AAAI'22", "0.910±0.114", "3.104±1.119", "2.300±0.911", "0.980±0.043", "0.036±0.009", "0.032±0.016", "0.934±0.011"],
+      ["BiMPan", "ACMM'23", "0.915±0.087", "2.984±0.601", "2.257±0.552", "0.984±0.005", "0.017±0.019", "0.035±0.015", "0.949±0.026"],
+      ["ARConv", "CVPR'25", { content: "0.916±0.083", isUnderline: true }, "2.858±0.590", "2.117±0.528", { content: "0.989±0.014", isUnderline: true }, { content: "0.014±0.006", isUnderline: true }, { content: "0.030±0.007", isUnderline: true }, { content: "0.958±0.010", isUnderline: true }],
+      ["WFANet", "AAAI'25", "0.917±0.088", "2.855±0.618", "2.095±0.422", { content: "0.989±0.011", isUnderline: true }, "0.012±0.007", "0.031±0.009", "0.957±0.010"],
+      ["PanDiff", "TGRS'23", "0.898±0.090", "3.297±0.235", "2.467±0.166", "0.980±0.019", "0.027±0.108", "0.054±0.047", "0.920±0.077"],
+      ["SSDiff", "NeurIPS'24", "0.915±0.086", "2.843±0.529", "2.106±0.416", "0.986±0.004", "0.013±0.005", "0.031±0.003", "0.956±0.010"],
+      ["SGDiff", "CVPR'25", { content: "0.921±0.082", isUnderline: true }, "2.771±0.511", "2.044±0.449", "0.987±0.009", "0.012±0.005", "0.027±0.003", "0.960±0.006"],
+      [
+        { content: "SALAD-PAN", isBold: true },
+        "",
+        { content: "0.924±0.064", isBold: true },
+        { content: "2.689±0.135", isBold: true },
+        { content: "1.839±0.211", isBold: true },
+        { content: "0.989±0.007", isBold: true },
+        { content: "0.010±0.008", isBold: true },
+        { content: "0.021±0.004", isBold: true },
+        { content: "0.965±0.007", isBold: true },
+      ],
+    ],
+    separatorAfterRows: [5, 8],
+  },
+  {
+    name: "QuickBird (QB)",
+    caption: "Table 2. Quantitative results on the QuickBird (QB) dataset. Best and second-best results are in bold and underlined.",
+    columnGroups: [
+      { label: "Methods", colspan: 2 },
+      { label: "Reduced Resolution", colspan: 4 },
+      { label: "Full Resolution", colspan: 3 },
+    ],
+    headers: [
+      "Models",
+      "Pub/Year",
+      { content: "Q_4 \\uparrow", isLatex: true },
+      { content: "SAM \\downarrow", isLatex: true },
+      { content: "ERGAS \\downarrow", isLatex: true },
+      { content: "SCC \\uparrow", isLatex: true },
+      { content: "D_\\lambda \\downarrow", isLatex: true },
+      { content: "D_s \\downarrow", isLatex: true },
+      { content: "HQNR \\uparrow", isLatex: true },
+    ],
+    rows: [
+      ["PanNet", "ICCV'17", "0.885±0.118", "5.791±0.995", "5.863±0.413", "0.948±0.021", "0.059±0.017", "0.061±0.010", "0.883±0.025"],
+      ["FusionNet", "TGRS'20", "0.925±0.087", "4.923±0.812", "4.159±0.351", "0.956±0.018", "0.059±0.019", "0.052±0.009", "0.892±0.022"],
+      ["LAGConv", "AAAI'22", "0.916±0.130", "4.370±0.720", "3.740±0.290", "0.959±0.047", "0.085±0.024", "0.068±0.014", "0.853±0.018"],
+      ["BiMPan", "ACMM'23", "0.931±0.091", "4.586±0.821", "3.840±0.319", "0.980±0.008", "0.026±0.020", "0.040±0.013", "0.935±0.030"],
+      ["ARConv", "CVPR'25", "0.936±0.088", "4.453±0.499", "3.649±0.401", { content: "0.987±0.009", isUnderline: true }, { content: "0.019±0.014", isUnderline: true }, "0.034±0.017", "0.948±0.042"],
+      ["WFANet", "AAAI'25", "0.935±0.092", "4.490±0.582", "3.604±0.337", "0.986±0.008", { content: "0.019±0.016", isUnderline: true }, "0.033±0.019", "0.948±0.037"],
+      ["PanDiff", "TGRS'23", "0.934±0.095", "4.575±0.255", "3.742±0.353", "0.980±0.007", "0.058±0.015", "0.064±0.020", "0.881±0.075"],
+      ["SSDiff", "NeurIPS'24", "0.934±0.094", "4.464±0.747", "3.632±0.275", "0.982±0.008", "0.031±0.011", "0.036±0.013", "0.934±0.021"],
+      ["SGDiff", "CVPR'25", { content: "0.938±0.087", isUnderline: true }, { content: "4.353±0.741", isUnderline: true }, { content: "3.578±0.290", isUnderline: true }, "0.983±0.007", "0.023±0.013", "0.043±0.012", "0.934±0.011"],
+      [
+        { content: "SALAD-PAN", isBold: true },
+        "",
+        { content: "0.939±0.088", isBold: true },
+        { content: "4.198±0.526", isBold: true },
+        { content: "3.251±0.288", isBold: true },
+        { content: "0.984±0.009", isBold: true },
+        { content: "0.017±0.011", isBold: true },
+        { content: "0.026±0.009", isBold: true },
+        { content: "0.957±0.010", isBold: true },
+      ],
+    ],
+    separatorAfterRows: [5, 8],
+  },
+  {
+    name: "GaoFen-2 (GF2)",
+    caption:
+      "Table 8. Quantitative results on the GaoFen-2 (GF2) dataset. Best and second-best results are in bold and underlined.",
+    columnGroups: [
+      { label: "Methods", colspan: 2 },
+      { label: "Reduced Resolution (RR)", colspan: 4 },
+      { label: "Full Resolution (FR)", colspan: 3 },
+    ],
+    headers: [
+      "Models",
+      "Pub/Year",
+      { content: "Q_4 \\uparrow", isLatex: true },
+      { content: "SAM \\downarrow", isLatex: true },
+      { content: "ERGAS \\downarrow", isLatex: true },
+      { content: "SCC \\uparrow", isLatex: true },
+      { content: "D_\\lambda \\downarrow", isLatex: true },
+      { content: "D_s \\downarrow", isLatex: true },
+      { content: "HQNR \\uparrow", isLatex: true },
+    ],
+    rows: [
+      ["PanNet", "ICCV'17", "0.967±0.013", "0.997±0.022", "0.919±0.039", "0.973±0.011", "0.017±0.012", "0.047±0.012", "0.937±0.023"],
+      ["FusionNet", "TGRS'20", "0.964±0.014", "0.974±0.035", "0.988±0.072", "0.971±0.012", "0.040±0.013", "0.101±0.014", "0.863±0.018"],
+      ["LAGConv", "AAAI'22", "0.970±0.011", "1.080±0.023", "0.910±0.045", "0.977±0.006", "0.033±0.013", "0.079±0.013", "0.891±0.021"],
+      ["BiMPan", "ACMM'23", "0.965±0.020", "0.902±0.066", "0.881±0.058", "0.972±0.018", "0.032±0.015", "0.051±0.014", "0.918±0.019"],
+      [
+        "ARConv",
+        "CVPR'25",
+        "0.982±0.013",
+        "0.710±0.149",
+        "0.645±0.127",
+        { content: "0.994±0.005", isUnderline: true },
+        "0.007±0.005",
+        "0.029±0.019",
+        "0.963±0.018",
+      ],
+      [
+        "WFANet",
+        "AAAI'25",
+        "0.981±0.007",
+        "0.751±0.082",
+        "0.657±0.074",
+        { content: "0.994±0.002", isBold: true },
+        { content: "0.003±0.003", isBold: true },
+        "0.032±0.021",
+        { content: "0.964±0.020", isUnderline: true },
+      ],
+      ["PanDiff", "TGRS'23", "0.979±0.011", "0.888±0.037", "0.746±0.031", "0.988±0.003", "0.027±0.011", "0.073±0.013", "0.903±0.025"],
+      [
+        "SSDiff",
+        "NeurIPS'24",
+        { content: "0.983±0.007", isBold: true },
+        { content: "0.670±0.124", isUnderline: true },
+        { content: "0.604±0.108", isUnderline: true },
+        "0.991±0.006",
+        "0.016±0.009",
+        "0.027±0.027",
+        "0.957±0.010",
+      ],
+      [
+        "SGDiff",
+        "CVPR'25",
+        "0.980±0.011",
+        "0.708±0.119",
+        "0.668±0.094",
+        "0.989±0.005",
+        "0.020±0.013",
+        { content: "0.024±0.022", isUnderline: true },
+        "0.959±0.011",
+      ],
+      [
+        { content: "SALAD-PAN", isBold: true },
+        "",
+        { content: "0.982±0.010", isUnderline: true },
+        { content: "0.667±0.051", isBold: true },
+        { content: "0.592±0.088", isBold: true },
+        "0.991±0.003",
+        { content: "0.005±0.002", isUnderline: true },
+        { content: "0.022±0.014", isBold: true },
+        { content: "0.973±0.010", isBold: true },
+      ],
+    ],
+    separatorAfterRows: [5, 8],
+  },
 ]
 
+/*
 const faqItems = [
   {
     title: "What makes SALAD-Pan different from existing methods?",
@@ -109,6 +258,7 @@ const faqItems = [
       "Yes, we release our complete codebase, including training scripts, pre-trained models, and evaluation tools. The code is available on GitHub under the MIT license.",
   },
 ]
+*/
 
 /*
 const chartData = [
@@ -124,55 +274,78 @@ const chartDataKeys = [
 ]
 */
 
-const comparisonImages = [
+type VisSample = {
+  input: string
+  before: string
+  after: string
+}
+
+type VisDataset = {
+  name: string
+  images: VisSample[]
+}
+
+const makeTripletSamples = (opts: {
+  count: number
+  getPanUrl: (index1Based: number) => string
+  getLrmsUrl: (index1Based: number) => string
+  getSaladUrl: (index1Based: number) => string
+}): VisSample[] => {
+  const { count, getPanUrl, getLrmsUrl, getSaladUrl } = opts
+  return Array.from({ length: count }, (_, i) => {
+    const k = i + 1 // 1-based
+    return {
+      input: getPanUrl(k),
+      before: getLrmsUrl(k),
+      after: getSaladUrl(k),
+    }
+  })
+}
+
+const VIS_ASSET_BASE = "https://salad-pan.github.io/"
+const VIS_COUNT_PER_DATASET = 20
+
+const pad3 = (n: number) => String(n).padStart(3, "0")
+
+const visualizationDatasets: VisDataset[] = [
   {
-    before: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&blur=50",
-    after: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format",
-    beforeLabel: "Input",
-    afterLabel: "SALAD-Pan",
-    caption: "Figure 1: Low-quality input vs. SALAD-Pan enhanced segmentation result.",
+    name: "WorldView-3",
+    images: makeTripletSamples({
+      count: VIS_COUNT_PER_DATASET,
+      getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv3/${pad3(k)}_pan.png`,
+      getLrmsUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv3/${pad3(k)}_lrms.png`,
+      getSaladUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv3/${pad3(k)}_salad.png`,
+    }),
   },
   {
-    before: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&blur=50",
-    after: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format",
-    beforeLabel: "Baseline",
-    afterLabel: "Ours",
-    caption: "Figure 2: Comparison between baseline method and our approach on complex scene.",
+    name: "QuickBird",
+    images: makeTripletSamples({
+      count: VIS_COUNT_PER_DATASET,
+      getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/qb/${pad3(k)}_pan.png`,
+      getLrmsUrl: (k) => `${VIS_ASSET_BASE}/visualizations/qb/${pad3(k)}_lrms.png`,
+      getSaladUrl: (k) => `${VIS_ASSET_BASE}/visualizations/qb/${pad3(k)}_salad.png`,
+    }),
   },
   {
-    before: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format&blur=50",
-    after: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format",
-    beforeLabel: "Raw",
-    afterLabel: "Enhanced",
-    caption: "Figure 3: Raw input versus enhanced output demonstrating boundary refinement.",
+    name: "GaoFen-2",
+    images: makeTripletSamples({
+      count: VIS_COUNT_PER_DATASET,
+      getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/gf2/${pad3(k)}_pan.png`,
+      getLrmsUrl: (k) => `${VIS_ASSET_BASE}/visualizations/gf2/${pad3(k)}_lrms.png`,
+      getSaladUrl: (k) => `${VIS_ASSET_BASE}/visualizations/gf2/${pad3(k)}_salad.png`,
+    }),
   },
 ]
 
-const bibtex = ``
-
-const images = [
-  {
-    before: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&blur=50",
-    after: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format",
-    beforeLabel: "Input",
-    afterLabel: "SALAD-Pan",
-    caption: "Figure 1: Low-quality input vs. SALAD-Pan enhanced segmentation result.",
-  },
-  {
-    before: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&blur=50",
-    after: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format",
-    beforeLabel: "Baseline",
-    afterLabel: "Ours",
-    caption: "Figure 2: Comparison between baseline method and our approach on complex scene.",
-  },
-  {
-    before: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format&blur=50",
-    after: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format",
-    beforeLabel: "Raw",
-    afterLabel: "Enhanced",
-    caption: "Figure 3: Raw input versus enhanced output demonstrating boundary refinement.",
-  },
-]
+const bibtex = `@misc{li2026_saladpan,
+      title={SALAD-Pan: Sensor-Agnostic Latent Adaptive Diffusion for Pan-Sharpening}, 
+      author={Junjie Li and Congyang Ou and Haokui Zhang and Guoting Wei and Shengqin Jiang and Ying Li and Chunhua Shen},
+      year={2026},
+      eprint={2602.04473},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2602.04473}, 
+}`
 
 export default function Home() {
   return (
@@ -195,12 +368,7 @@ export default function Home() {
         {/* Abstract */}
         <AbstractSection
           content={abstractText}
-          keywords={[
-            "Pan-sharpening",
-            "Latent Diffusion",
-            "Sensor-Agnostic",
-            "Remote Sensing Image Fusion",
-          ]}
+          keywords={["Pan-sharpening", "Latent Diffusion", "Sensor-Agnostic", "Remote Sensing Image Fusion"]}
         />
 
         <div className="mx-auto h-px w-24 bg-border" />
@@ -222,9 +390,8 @@ export default function Home() {
         {/* Results Table */}
         <TableSection
           title="Experimental Results"
-          headers={tableHeaders}
-          rows={tableRows}
-          caption="Table 1: Comparison with state-of-the-art methods on COCO panoptic val set."
+          tables={experimentalTables}
+          note="Best results are in bold. Second-best results are underlined."
         />
 
         <div className="mx-auto h-px w-24 bg-border" />
@@ -240,14 +407,20 @@ export default function Home() {
         */}
 
         {/* Image Slider */}
-        <ImageSliderSection title="Visualizations" images={comparisonImages} />
+        <ImageSliderSection
+          title="Visualizations"
+          datasets={visualizationDatasets}
+          beforeLabel="LRMS"
+          afterLabel="SALAD-Pan"
+        />
 
         <div className="mx-auto h-px w-24 bg-border" />
 
         {/* FAQ / Collapse */}
+        {/*
         <CollapseSection title="Frequently Asked Questions" items={faqItems} />
-
         <div className="mx-auto h-px w-24 bg-border" />
+        */}
 
         {/* BibTeX */}
         <BibTexSection citation={bibtex} />

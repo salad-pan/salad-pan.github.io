@@ -3,7 +3,7 @@
 import React from "react"
 
 import Link from "next/link"
-import { Github, FileText, Database, Video } from "lucide-react"
+import { Github, FileText, Database, Video, Box } from "lucide-react"
 
 interface Author {
   name: string
@@ -22,6 +22,7 @@ interface TitleSectionProps {
     arxiv?: string
     code?: string
     data?: string
+    models?: string
     video?: string
   }
 }
@@ -98,6 +99,11 @@ export function TitleSection({
           {links.code && (
             <LinkButton href={links.code} icon={<Github className="h-4 w-4" />}>
               Code
+            </LinkButton>
+          )}
+          {links.models && (
+            <LinkButton href={links.models} icon={<Box className="h-4 w-4" />}>
+              Models
             </LinkButton>
           )}
           {links.data && (
