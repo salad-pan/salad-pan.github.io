@@ -146,9 +146,11 @@ function SingleTable({ table }: { table: TableData }) {
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-center text-sm text-muted-foreground">
-        <span className="italic">{table.caption}</span>
-      </p>
+      {table.caption && (
+        <p className="mt-3 text-center text-sm text-muted-foreground">
+          <span className="italic">{table.caption}</span>
+        </p>
+      )}
     </div>
   )
 }

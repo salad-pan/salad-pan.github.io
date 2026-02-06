@@ -70,7 +70,8 @@ const formulas = [
 const experimentalTables = [
   {
     name: "WorldView-3",
-    caption: "Table 1. Quantitative results on the WorldView-3 (WV3) dataset. Best and second-best results are in bold and underlined.",
+    // caption: "Table 1. Quantitative results on the WorldView-3 (WV3) dataset. Best and second-best results are in bold and underlined.",
+    caption: "",
     columnGroups: [
       { label: "Methods", colspan: 2 },
       { label: "Reduced Resolution", colspan: 4 },
@@ -113,7 +114,8 @@ const experimentalTables = [
   },
   {
     name: "QuickBird",
-    caption: "Table 2. Quantitative results on the QuickBird (QB) dataset. Best and second-best results are in bold and underlined.",
+    caption: "",
+    // caption: "Table 2. Quantitative results on the QuickBird (QB) dataset. Best and second-best results are in bold and underlined.",
     columnGroups: [
       { label: "Methods", colspan: 2 },
       { label: "Reduced Resolution", colspan: 4 },
@@ -156,8 +158,8 @@ const experimentalTables = [
   },
   {
     name: "GaoFen-2",
-    caption:
-      "Table 3. Quantitative results on the GaoFen-2 (GF2) dataset. Best and second-best results are in bold and underlined.",
+    caption: "",
+    // caption: "Table 3. Quantitative results on the GaoFen-2 (GF2) dataset. Best and second-best results are in bold and underlined.",
     columnGroups: [
       { label: "Methods", colspan: 2 },
       { label: "Reduced Resolution (RR)", colspan: 4 },
