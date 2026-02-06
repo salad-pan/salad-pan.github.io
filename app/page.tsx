@@ -69,7 +69,7 @@ const formulas = [
 
 const experimentalTables = [
   {
-    name: "WorldView-3 (WV3)",
+    name: "WorldView-3",
     caption: "Table 1. Quantitative results on the WorldView-3 (WV3) dataset. Best and second-best results are in bold and underlined.",
     columnGroups: [
       { label: "Methods", colspan: 2 },
@@ -112,7 +112,7 @@ const experimentalTables = [
     separatorAfterRows: [5, 8],
   },
   {
-    name: "QuickBird (QB)",
+    name: "QuickBird",
     caption: "Table 2. Quantitative results on the QuickBird (QB) dataset. Best and second-best results are in bold and underlined.",
     columnGroups: [
       { label: "Methods", colspan: 2 },
@@ -155,7 +155,7 @@ const experimentalTables = [
     separatorAfterRows: [5, 8],
   },
   {
-    name: "GaoFen-2 (GF2)",
+    name: "GaoFen-2",
     caption:
       "Table 3. Quantitative results on the GaoFen-2 (GF2) dataset. Best and second-best results are in bold and underlined.",
     columnGroups: [
@@ -309,7 +309,7 @@ const pad3 = (n: number) => String(n).padStart(3, "0")
 
 const visualizationDatasets: VisDataset[] = [
   {
-    name: "WorldView-3 (WV3)",
+    name: "WorldView-3",
     images: makeTripletSamples({
       count: VIS_COUNT_PER_DATASET,
       getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv3/${pad3(k)}_pan.png`,
@@ -318,7 +318,16 @@ const visualizationDatasets: VisDataset[] = [
     }),
   },
   {
-    name: "QuickBird (QB)",
+    name: "WorldView-2",
+    images: makeTripletSamples({
+      count: VIS_COUNT_PER_DATASET,
+      getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv2/${pad3(k)}_pan.png`,
+      getLrmsUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv2/${pad3(k)}_lrms.png`,
+      getSaladUrl: (k) => `${VIS_ASSET_BASE}/visualizations/wv2/${pad3(k)}_salad.png`,
+    }),
+  },
+  {
+    name: "QuickBird",
     images: makeTripletSamples({
       count: VIS_COUNT_PER_DATASET,
       getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/qb/${pad3(k)}_pan.png`,
@@ -327,7 +336,7 @@ const visualizationDatasets: VisDataset[] = [
     }),
   },
   {
-    name: "GaoFen-2 (GF2)",
+    name: "GaoFen-2",
     images: makeTripletSamples({
       count: VIS_COUNT_PER_DATASET,
       getPanUrl: (k) => `${VIS_ASSET_BASE}/visualizations/gf2/${pad3(k)}_pan.png`,
