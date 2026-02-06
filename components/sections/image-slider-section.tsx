@@ -71,7 +71,7 @@ function ImageComparisonSlider({
       onClick={handleClick}
       onTouchMove={handleTouchMove}
     >
-      {/* After image (right side - clear) */}
+      {/* After image (right side) */}
       <div className="absolute inset-0">
         <Image
           src={after || "/placeholder.svg"}
@@ -82,7 +82,7 @@ function ImageComparisonSlider({
         />
       </div>
 
-      {/* Before image (left side - blurry) with clip */}
+      {/* Before image (left side) with clip */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
@@ -142,7 +142,7 @@ function ImageComparisonSlider({
 export function ImageSliderSection({
   title,
   datasets,
-  beforeLabel = "Baseline",
+  beforeLabel = "LRMS",
   afterLabel = "SALAD-Pan",
 }: ImageSliderSectionProps) {
   const [currentDatasetIndex, setCurrentDatasetIndex] = useState(0)
@@ -194,24 +194,19 @@ export function ImageSliderSection({
         ))}
       </div>
 
-      {/* Main Content: Left Input + Right Comparison */}
+      {/* Main Content: Left PAN↔SALAD + Right LRMS↔SALAD */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Left: Input Image */}
+        {/* Left: PAN vs SALAD-Pan slider */}
         <div className="flex flex-col">
-          <div className="relative aspect-square overflow-hidden rounded border border-border bg-muted">
-            <Image
-              src={currentImage.input || "/placeholder.svg"}
-              alt="Input"
-              fill
-              className="object-cover"
-            />
-            <div className="pointer-events-none absolute top-3 left-3 rounded bg-foreground/80 px-2 py-1 text-xs font-medium text-background backdrop-blur-sm">
-              PAN
-            </div>
-          </div>
+          <ImageComparisonSlider
+            before={currentImage.input}
+            after={currentImage.after}
+            beforeLabel="PAN"
+            afterLabel={afterLabel}
+          />
         </div>
 
-        {/* Right: Comparison Slider */}
+        {/* Right: LRMS vs SALAD-Pan slider (existing) */}
         <div className="flex flex-col">
           <ImageComparisonSlider
             before={currentImage.before}
@@ -229,7 +224,14 @@ export function ImageSliderSection({
           className="flex h-10 w-10 items-center justify-center rounded border border-border bg-background text-foreground transition-colors hover:bg-muted"
           aria-label="Previous image"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>
@@ -243,7 +245,14 @@ export function ImageSliderSection({
           className="flex h-10 w-10 items-center justify-center rounded border border-border bg-background text-foreground transition-colors hover:bg-muted"
           aria-label="Next image"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
