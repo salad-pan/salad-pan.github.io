@@ -351,7 +351,7 @@ const visualizationDatasets: VisDataset[] = [
 
 const bibtex = `@article{li2026ccpan,
   title={CC-Pan: Channel-wise Compression based Diffusion for Efficient Pan-Sharpening},
-  author={Junjie Li and Congyang Ou and Haokui Zhang and Guoting Wei and Shengqin Jiang and Ying Li and Chunhua Shen},
+  author={Junjie Li and Congyang Ou and Haokui Zhang and Guoting Wei and Shengqin Jiang and Ying Li},
   journal={arXiv preprint arXiv:2602.04473},
   year={2026}
 }`
