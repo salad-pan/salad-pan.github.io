@@ -8,7 +8,7 @@ const _inter = Inter({ subsets: ["latin"] });
 const _sourceSerif = Source_Serif_4({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'SALAD-Pan | Research Project',
+  title: 'CC-Pan | Research Project',
   description: 'Academic research project homepage',
   generator: 'v0.app',
   icons: {

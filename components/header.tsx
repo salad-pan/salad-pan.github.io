@@ -10,7 +10,7 @@ const navigation = {
     link: "https://github.com/JJLibra",
   },
   logo: {
-    name: "SALAD-Pan",
+    name: "CC-Pan",
     link: "#",
   },
   projects: [

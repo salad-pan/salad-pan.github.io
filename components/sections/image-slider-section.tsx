@@ -143,7 +143,7 @@ export function ImageSliderSection({
   title,
   datasets,
   beforeLabel = "LRMS",
-  afterLabel = "SALAD-Pan",
+  afterLabel = "CC-Pan",
 }: ImageSliderSectionProps) {
   const [currentDatasetIndex, setCurrentDatasetIndex] = useState(0)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -194,9 +194,9 @@ export function ImageSliderSection({
         ))}
       </div>
 
-      {/* Main Content: Left PAN↔SALAD + Right LRMS↔SALAD */}
+      {/* Main Content: Left PAN↔CC + Right LRMS↔CC */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Left: PAN vs SALAD-Pan slider */}
+        {/* Left: PAN vs CC-Pan slider */}
         <div className="flex flex-col">
           <ImageComparisonSlider
             before={currentImage.input}
@@ -206,7 +206,7 @@ export function ImageSliderSection({
           />
         </div>
 
-        {/* Right: LRMS vs SALAD-Pan slider (existing) */}
+        {/* Right: LRMS vs CC-Pan slider (existing) */}
         <div className="flex flex-col">
           <ImageComparisonSlider
             before={currentImage.before}
